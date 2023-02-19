@@ -1,0 +1,16 @@
+.home{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.homeButton{
+  padding: 0.5em;
+  font-weight: 700;
+  border: 1px solid black;
+  border-radius: 5px;
+}
