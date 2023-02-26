@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import styles from  '../styles/navbar.module.css'
+import { UserButton } from '@clerk/nextjs';
 
 const Navbar = () => {
   return (
@@ -8,9 +11,7 @@ const Navbar = () => {
         <h3>Anirank</h3>
       </div>
       <div>
-        <button>
-          <Link href='/login'> Login</Link>
-        </button>
+        <UserButton/>
       </div>
     </nav>
   )

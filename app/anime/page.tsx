@@ -1,45 +1,27 @@
-'use client'
-
 import styles from '../../styles/search.module.css'
 import SearchBar from '@/components/SearchBar'
 import Link from 'next/link';
-import {useState, useEffect} from 'react';
+import Navbar from '@/components/Navbar';
+import { currentUser, auth } from '@clerk/nextjs/app-beta';
+import type { User,} from '@clerk/nextjs/dist/api'
 
 
-export default function SearchAnime() {
-  const [topAnime, setTopAnime] = useState([])
 
-  const getTopAnime = async () => {
-    const data = await fetch('https://api.jikan.moe/v4/top/anime?page=1')
-      .then((res) => res.json())
-    // const res = await data.json()
-    // console.log(res)
-    setTopAnime(data.data)
-  }
+export default  async function MainPage() {
 
-  useEffect(()=> {
-    getTopAnime();
-  }, [])
+  const user: User | null = await currentUser();
+  console.log(user?.id)
 
-  console.log(topAnime)
 
   return(
     <div className={styles.container}>
+      <Navbar/>
       <div>
         <h1>Search All Your Favorite Animes</h1>
       </div>
-      {
-        topAnime.map((anime, index) => {
-          return(
-            <div key={index}>
-              <Link href={`anime/${anime.mal_id}`}>
-                <p>{anime.mal_id}</p>
-              </Link>
-            </div>
-          )
-        })
-      }
-
+      <div>
+        {user?.emailAddresses[0].emailAddress}
+      </div>
       <SearchBar/>
     </div>
   )
